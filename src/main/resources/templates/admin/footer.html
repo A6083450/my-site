@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="footer-content">
+    <footer class="footer text-right">
+        © 2017 - 2018  <a th:href="@{https://github.com/WinterChenS}" target="_blank">My Site</a><div class=""></div>
+    </footer>
+</div>
+<body th:fragment="footer">
+<script th:src="@{//cdn.bootcss.com/jquery/2.2.3/jquery.min.js}"></script>
+<script th:src="@{//cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
+<script th:src="@{//cdn.bootcss.com/limonte-sweetalert2/6.4.1/sweetalert2.min.js}"></script>
+<script th:src="@{/admin/js/jquery.app.js}"></script>
+<script th:src="@{/admin/js/base.js}"></script>
+<script th:src="@{https://cdn.bootcss.com/headroom/0.9.1/headroom.min.js}"></script>
+<script th:src="@{https://cdn.bootcss.com/highlight.js/9.9.0/highlight.min.js}"></script>
+<script th:src="@{https://cdn.bootcss.com/instantclick/3.0.1/instantclick.min.js}"></script>
+<script>
+    var header = new Headroom(document.getElementById("topbar"), {
+        tolerance: 10,
+        offset: 80,
+        classes: {
+            initial: "animated",
+            pinned: "slideDown",
+            unpinned: "slideUp"
+        }
+    });
+    header.init();
+    $("#leftMenuBtn").click();
+    /*var header = new Headroom(document.getElementById("header"), {
+        tolerance: 10,
+        offset: 80,
+        classes: {
+            initial: "animated",
+            pinned: "slideDown",
+            unpinned: "slideUp"
+        }
+    });
+    header.init();*/
+</script>
+</body>
+</html>

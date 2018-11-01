@@ -1,0 +1,118 @@
+<!DOCTYPE HTML>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="site/head::head(${commons.site_title()},${commons.google_site_verification()}, ${commons.baidu_site_verification()})"></div>
+
+
+
+
+<body>
+
+    
+
+    	<!-- header -->
+
+        <div th:replace="site/header::header"></div>
+
+
+        <!-- header -->
+
+        <!-- main -->
+
+        <main role="main-inner-wrapper" class="container">
+
+        	
+
+            <div class="row">
+
+            
+
+            	<section class="col-xs-12 col-sm-6 col-md-6 col-lg-6 ">
+
+                	<article role="pge-title-content">
+
+                    	<header>
+
+                        	<h2><span>Hi! </span> 我的名字叫梁嘉权.</h2>
+
+                        </header>
+
+                        <p>我是一个Java程序员，对编码有着持久的兴趣.</p>
+
+                    </article>
+
+                </section>
+
+                
+
+                <section class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+
+                	<article class="about-content">
+
+                    	<p>在我空闲的时候, 我喜欢编码、骑车、打王者和认识新朋友.</p>
+
+                        <p>扫描QR码，添加到我的聊天.</p>
+
+                    </article>
+
+                </section>
+
+                
+
+                <div class="clearfix"></div>
+
+                
+
+                <!-- thumbnails -->
+
+                	<div class="thumbnails-pan">
+                        <th:block th:each="link,linkStat : ${links}">
+                            <th:block th:if="${linkStat.index < 3}">
+                                <section class="col-xs-12 col-sm-4 col-md-4 col-lg-4 " id="grid">
+
+                                    <figure>
+                                            <!--th:src="@{'/site/images/about-images/about-image-' + ${linkStat.index+1} + '.jpg'}"-->
+                                        <img th:src="@{'/site/images/about-images/about-image-0.png'}"
+                                             th:onclick="'javascript:linkFirend(\''+${link.slug}+'\')'" class="img-responsive" style="background-color: #f6f6f6"/>
+
+                                        <figcaption>
+
+                                            <h3><th:block th:text="${link.name}"></th:block></h3>
+
+                                            <h5><th:block th:text="${link.description}"></th:block></h5>
+
+                                        </figcaption>
+
+                                    </figure>
+
+                                </section>
+                            </th:block>
+
+                        </th:block>
+
+
+
+                        
+
+                     
+
+                    </div>
+
+                <!-- thumbnails -->
+
+                
+
+                
+
+            </div>
+
+        </main>
+
+    	<!-- main -->
+
+        <!-- footer -->
+
+        <div th:replace="site/footer::footer(${commons.site_title()},${commons.site_record()},${commons.site_url()})"></div>
+
+</body>
+</html>
