@@ -302,3 +302,7 @@ opacity: 1;
 .lists-navigator ol li a{
     color: #000000;
 }
+
+.aHoverNone:hover{
+    text-decoration: none;
+}

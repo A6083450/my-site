@@ -41,7 +41,7 @@
                         <li>
                             <section class="blog-content">
 
-                                <a th:href="${commons.blogPermalink(article.cid)}">
+                                <a th:href="${commons.blogPermalink(article.cid)}" class="aHoverNone">
 
                                     <figure>
 
@@ -56,13 +56,14 @@
 
                                     </figure>
 
-                                </a>
 
                                 <article>
 
                                     <th:block th:text="${article.title}"></th:block>
 
                                 </article>
+
+                                </a>
 
                             </section>
                         </li>
@@ -85,7 +86,7 @@
                         <li>
                             <section class="blog-content">
 
-                                <a th:href="${commons.blogPermalink(article.cid)}">
+                                <a th:href="${commons.blogPermalink(article.cid)}" class="aHoverNone">
 
                                     <figure>
 
@@ -100,13 +101,13 @@
 
                                     </figure>
 
-                                </a>
-
                                 <article>
 
                                     <th:block th:text="${article.title}"></th:block>
 
                                 </article>
+
+                                </a>
 
                             </section>
                         </li>

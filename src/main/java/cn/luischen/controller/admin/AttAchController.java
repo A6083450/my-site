@@ -1,10 +1,13 @@
 package cn.luischen.controller.admin;
 
+import cn.luischen.api.TxCloudService;
 import cn.luischen.constant.ErrorConstant;
 import cn.luischen.constant.Types;
 import cn.luischen.constant.WebConst;
 import cn.luischen.dto.AttAchDto;
 import cn.luischen.exception.BusinessException;
+import cn.luischen.model.AttAchDomain;
+import cn.luischen.model.UserDomain;
 import cn.luischen.service.attach.AttAchService;
 import cn.luischen.utils.APIResponse;
 import cn.luischen.utils.Commons;
@@ -18,8 +21,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.io.IOException;
 
 /**
  * 附件控制器
@@ -61,28 +68,27 @@ public class AttAchController {
 
 
 
-    /*@ApiOperation("markdown文件上传")
+    @ApiOperation("markdown文件上传")
     @PostMapping("/uploadfile")
     public void fileUpLoadToTencentCloud(HttpServletRequest request,
                                                 HttpServletResponse response,
                                                 @ApiParam(name = "editormd-image-file", value = "文件数组", required = true)
                                                 @RequestParam(name = "editormd-image-file", required = true)
-                                                MultipartFile file){
+                                                 MultipartFile file){
         //文件上传
         try {
             request.setCharacterEncoding( "utf-8" );
             response.setHeader( "Content-Type" , "text/html" );
-
             String fileName = TaleUtils.getFileKey(file.getOriginalFilename()).replaceFirst("/","");
 
-            QiniuCloudService.upload(file, fileName);
+            TxCloudService.upload(file, fileName);
             AttAchDomain attAch = new AttAchDomain();
             HttpSession session = request.getSession();
             UserDomain sessionUser = (UserDomain) session.getAttribute(WebConst.LOGIN_SESSION_KEY);
             attAch.setAuthorId(sessionUser.getUid());
             attAch.setFtype(TaleUtils.isImage(file.getInputStream()) ? Types.IMAGE.getType() : Types.FILE.getType());
             attAch.setFname(fileName);
-            attAch.setFkey(QiniuCloudService.QINIU_UPLOAD_SITE + fileName);
+            attAch.setFkey(TxCloudService.TX_UPLOAD_SITE + fileName);
             attAchService.addAttAch(attAch);
             response.getWriter().write( "{\"success\": 1, \"message\":\"上传成功\",\"url\":\"" + attAch.getFkey() + "\"}" );
         } catch (IOException e) {
@@ -115,14 +121,14 @@ public class AttAchController {
 
                 String fileName = TaleUtils.getFileKey(file.getOriginalFilename()).replaceFirst("/","");
 
-                QiniuCloudService.upload(file, fileName);
+                TxCloudService.upload(file, fileName);
                 AttAchDomain attAch = new AttAchDomain();
                 HttpSession session = request.getSession();
                 UserDomain sessionUser = (UserDomain) session.getAttribute(WebConst.LOGIN_SESSION_KEY);
                 attAch.setAuthorId(sessionUser.getUid());
                 attAch.setFtype(TaleUtils.isImage(file.getInputStream()) ? Types.IMAGE.getType() : Types.FILE.getType());
                 attAch.setFname(fileName);
-                attAch.setFkey(QiniuCloudService.QINIU_UPLOAD_SITE + fileName);
+                attAch.setFkey(TxCloudService.TX_UPLOAD_SITE + fileName);
                 attAchService.addAttAch(attAch);
             }
             return APIResponse.success();
@@ -131,7 +137,7 @@ public class AttAchController {
             throw BusinessException.withErrorCode(ErrorConstant.Att.UPLOAD_FILE_FAIL)
                     .withErrorMessageArguments(e.getMessage());
         }
-    }*/
+    }
 
     @ApiOperation("删除文件记录")
     @PostMapping(value = "/delete")
