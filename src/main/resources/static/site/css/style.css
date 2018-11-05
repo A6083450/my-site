@@ -388,7 +388,7 @@ main[role="main-inner-wrapper"] .thumbnails-pan section figure:hover figcaption 
 /*===== Blog ===*/
 
 article[role="pge-title-content"].blog-header {
-	padding-bottom: 218px
+	padding-bottom: 20px
 }
 section.blog-content {
 	margin-bottom: 29px
